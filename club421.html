@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Club 421</title>
+    <link rel="icon" type="image/png" href="fotos/Logo Club 421.png">
+    <style>
+        :root {
+            --primary-color: #1dc5c9;
+            --secondary-color: #2c3e50;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --card-background: white;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            max-height: 80px;
+            max-width: 120px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .runner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .runner-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .runner-card:hover {
+            transform: scale(1.05);
+        }
+
+        .runner-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--primary-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .modal-content h4 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .modal-content ul {
+            margin-top: 10px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .close-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-button:hover {
+            background-color: #19a0a5;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                position: static;
+                transform: none;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img id="clubLogo" src="fotos/Logo Club 421.png" alt="Club 421 Logo" class="logo">
+        <h1>Club 421 - Running Team</h1>
+    </header>
+
+    <div class="container">
+        <section id="club-info">
+            <h2 class="section-title">Sobre Nuestro Club</h2>
+            <p>Club 421 nace de la pasión por el running y el deseo de superar límites. Fundado en 2024, su nombre proviene del 42 de la maratón y el 21 de la media maratón. Nos dedicamos a entrenar, crecer y disfrutar juntos de este increíble deporte.</p>
+        </section>
+
+        <section id="runners">
+            <h2 class="section-title">Nuestros Corredores</h2>
+            <div class="runner-grid">
+                <div class="runner-card" data-runner="Álvaro Villegas">
+                    <img src="fotos/Álvaro Villegas.png" alt="Álvaro Villegas">
+                    <h3>Álvaro Villegas</h3>
+                </div>
+
+                <div class="runner-card" data-runner="Victor Gil">
+                    <img src="fotos/Victor Gil.jpeg" alt="Victor Gil">
+                    <h3>Victor Gil</h3>
+                </div>
+
+                <div class="runner-card" data-runner="Nacho Moreno">
+                    <img src="fotos/Nacho Moreno.jpg" alt="Nacho Moreno">
+                    <h3>Nacho Moreno</h3>
+                </div>
+
+                <div class="runner-card" data-runner="Diego Grau">
+                    <img src="fotos/Diego Grau.png" alt="Diego Grau">
+                    <h3>Diego Grau</h3>
+                </div>
+
+                <div class="runner-card" data-runner="Jorge Toba">
+                    <img src="fotos/Jorge Toba.png" alt="Jorge Toba">
+                    <h3>Jorge Toba</h3>
+                </div>
+
+                <div class="runner-card" data-runner="Iñigo Ruiz">
+                    <img src="fotos/Ínigo Ruiz.png" alt="Iñigo Ruiz">
+                    <h3>Iñigo Ruiz</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div id="runnerModal" class="modal">
+        <img id="runnerImage" src="" alt="Runner Image">
+        <div class="modal-content">
+            <h3 id="runnerName"></h3>
+            <p id="runnerInstagram"></p> <!-- Instagram se mostrará aquí debajo del nombre -->
+            <div id="runnerDetails"></div>
+        </div>
+        <button class="close-button" onclick="closeModal()">Volver</button>
+    </div>
+
+    <script>
+        const runners = {
+            "Álvaro Villegas": {
+                image: "fotos/Álvaro Villegas.png",
+                carreras: ["21km Madrid", "10km Aranjuez x2", "21km Bilbao", "21km Behobia"],
+                objetivos: [],
+                instagram: "https://www.instagram.com/AlvaroVillegas/"
+            },
+            "Victor Gil": {
+                image: "fotos/Victor Gil.jpeg",
+                carreras: ["10km Aranjuez", "10Km Madrid", "21Km Bilbao"],
+                objetivos: ["21Km Madrid"],
+                instagram: "https://www.instagram.com/victorgbarrios/"
+            },
+            "Nacho Moreno": {
+                image: "fotos/Nacho Moreno.jpg",
+                carreras: ["42km Valencia", "21Km Valencia", "21Km Madrid x2", "21Km Behobia", "21Km Sevilla", "10Km Aranjuez"],
+                objetivos: [],
+                instagram: "https://www.instagram.com/imorenol11/"
+            },
+            "Diego Grau": {
+                image: "fotos/Diego Grau.png",
+                carreras: ["42km Valencia", "42km Paris", "21km Madrid", "21Km Bilbao", "21Km Behobia", "10Km Aranjuez"],
+                objetivos: [],
+                instagram: "https://www.instagram.com/diego13gm/"
+            },
+            "Jorge Toba": {
+                image: "fotos/Jorge Toba.png",
+                carreras: ["21km Behobia", "10K Aranjuez"],
+                objetivos: ["21km Madrid"],
+                instagram: "https://www.instagram.com/jorgetoba13/"
+            },
+            "Iñigo Ruiz": {
+                image: "fotos/Ínigo Ruiz.png",
+                carreras: ["21km Madrid", "10Km Aranjuez x2", "10km Madrid", "21km Bilbao"],
+                objetivos: [],
+                instagram: "https://www.instagram.com/xruiz10/"
+            }
+        };
+
+        const modal = document.getElementById("runnerModal");
+        const runnerImage = document.getElementById("runnerImage");
+        const runnerName = document.getElementById("runnerName");
+        const runnerDetails = document.getElementById("runnerDetails");
+        const runnerInstagram = document.getElementById("runnerInstagram");
+
+        document.querySelectorAll(".runner-card").forEach(card => {
+            card.addEventListener("click", () => {
+                const runner = card.getAttribute("data-runner");
+                const data = runners[runner];
+
+                runnerImage.src = data.image;
+                runnerName.textContent = runner;
+
+                runnerInstagram.innerHTML = `<strong>Instagram:</strong> <a href="${data.instagram}" target="_blank" style="color: var(--primary-color);">Ver perfil</a>`;
+                
+                let detailsHTML = "<h4>Carreras realizadas:</h4><ul>";
+                data.carreras.forEach(carrera => {
+                    detailsHTML += `<li>${carrera}</li>`;
+                });
+                detailsHTML += "</ul>";
+
+                if (data.objetivos.length > 0) {
+                    detailsHTML += "<h4>Próximos objetivos:</h4><ul>";
+                    data.objetivos.forEach(objetivo => {
+                        detailsHTML += `<li>${objetivo}</li>`;
+                    });
+                    detailsHTML += "</ul>";
+                }
+
+                runnerDetails.innerHTML = detailsHTML;
+                modal.classList.add("active");
+            });
+        });
+
+        function closeModal() {
+            modal.classList.remove("active");
+        }
+    </script>
+</body>
+</html>
